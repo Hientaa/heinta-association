@@ -1,0 +1,358 @@
+/* ============================================
+   صفحة مبادرة حصاد المعرفة
+   ============================================ */
+
+/* القسم الرئيسي (Hero) */
+.harvest-hero {
+    min-height: 75vh;
+    background: linear-gradient(135deg, rgba(74,124,89,0.92), rgba(30,86,49,0.88)), 
+                url('images/hero-bg.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.harvest-hero-content {
+    max-width: 850px;
+    z-index: 2;
+}
+
+.harvest-hero-logo {
+    width: 140px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 15px rgba(0,0,0,0.3));
+}
+
+.harvest-badge {
+    display: inline-block;
+    background: rgba(230,179,37,0.25);
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.harvest-hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin: 0 0 15px 0;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.harvest-tagline {
+    font-size: 1.25rem;
+    margin-bottom: 35px;
+    opacity: 0.95;
+    line-height: 1.9;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.harvest-hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #fff;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.btn-outline:hover {
+    background: #fff;
+    color: var(--primary);
+}
+
+/* شريط المعلومات */
+.harvest-info-bar {
+    background: var(--white);
+    padding: 25px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.harvest-info-bar .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-right: 3px solid var(--accent);
+}
+
+.info-icon {
+    font-size: 2rem;
+    background: var(--bg-warm);
+    padding: 12px;
+    border-radius: 12px;
+    line-height: 1;
+}
+
+.info-item h4 {
+    color: var(--primary);
+    font-size: 0.95rem;
+    margin: 0 0 3px 0;
+    font-weight: 800;
+}
+
+.info-item p {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* بطاقة عن المبادرة */
+.about-initiative-card {
+    border-right: 5px solid var(--accent);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-initiative-card p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+/* المواد */
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.subject-chip {
+    background: #fff;
+    padding: 20px 15px;
+    border-radius: var(--radius);
+    text-align: center;
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 1.05rem;
+    box-shadow: var(--shadow);
+    border-bottom: 4px solid var(--accent);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.subject-chip:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* نظام إضافة المواد الديناميكي */
+#subjectsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.subject-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
+    background: var(--bg-warm);
+    padding: 12px;
+    border-radius: 10px;
+    align-items: center;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.subject-row select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: #fff;
+}
+
+.subject-row select:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.btn-remove-subject {
+    background: #c0392b;
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-remove-subject:hover {
+    background: #a02920;
+}
+
+.btn-add-subject {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-add-subject:hover {
+    background: #143d21;
+}
+
+/* الأسئلة الشائعة */
+.faq-container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+
+.faq-item[open] {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+.faq-item summary {
+    padding: 20px 25px;
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 1.05rem;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-left: 50px;
+    transition: background 0.3s;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::before {
+    content: '+';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: 800;
+    transition: transform 0.3s;
+    line-height: 1;
+}
+
+.faq-item[open] summary::before {
+    content: '−';
+}
+
+.faq-item summary:hover {
+    background: var(--bg-warm);
+}
+
+.faq-item p {
+    padding: 0 25px 20px 25px;
+    margin: 0;
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+/* الدعوة الختامية */
+.harvest-cta {
+    background: linear-gradient(135deg, var(--primary), #143d21);
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px;
+    margin-top: 60px;
+}
+
+.harvest-cta h2 {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.harvest-cta p {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+/* التجاوب مع الجوال */
+@media (max-width: 768px) {
+    .harvest-hero h1 {
+        font-size: 2.5rem;
+    }
+    .harvest-tagline {
+        font-size: 1rem;
+    }
+    .harvest-hero-logo {
+        width: 100px;
+    }
+    .info-item {
+        flex-direction: column;
+        text-align: center;
+        border-right: none;
+        border-bottom: 3px solid var(--accent);
+        padding-bottom: 15px;
+    }
+    .harvest-cta h2 {
+        font-size: 1.6rem;
+    }
+    .subject-row {
+        grid-template-columns: 1fr 1fr auto;
+        gap: 8px;
+    }
+    .subject-row select {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+}
