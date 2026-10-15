@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة توليد بطاقات العضوية - جمعية حنطة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="id-card.css">
+</head>
+<body>
+
+    <header class="admin-header">
+        <h1>🔒 لوحة توليد بطاقات العضوية (للإدارة فقط)</h1>
+        <a href="index.html" class="back-link">← العودة للموقع الرئيسي</a>
+    </header>
+
+    <div id="loginScreen" class="login-screen">
+        <div class="login-box">
+            <h2>🔐 دخول الإدارة</h2>
+            <input type="password" id="adminPass" placeholder="أدخل كلمة المرور" onkeypress="if(event.key==='Enter') checkPassword()">
+            <button onclick="checkPassword()">دخول</button>
+            <p id="loginError" style="color:red; display:none; margin-top:10px;">كلمة المرور غير صحيحة!</p>
+        </div>
+    </div>
+
+    <div id="mainContent" class="admin-container" style="display:none;">
+        <div class="input-panel">
+            <h2>بيانات العضو</h2>
+
+            <div class="form-group"><label>الاسم بالعربية:</label><input type="text" id="inputNameAr" value="طارق حسن ابراهيم"></div>
+            <div class="form-group"><label>الاسم بالإنجليزية:</label><input type="text" id="inputNameEn" value="Tarek Hasan Ibrahem"></div>
+            <div class="form-group"><label>الصفة بالعربية:</label><input type="text" id="inputRoleAr" value="عضو مؤسس"></div>
+            <div class="form-group"><label>الصفة بالإنجليزية:</label><input type="text" id="inputRoleEn" value="Founding Member"></div>
+            <div class="form-group"><label>تاريخ الانتساب:</label><input type="text" id="inputJoinDate" value="22 / 2 / 2026"></div>
+            <div class="form-group"><label>رقم الموبايل:</label><input type="text" id="inputMobile" value="0987 002520"></div>
+            <div class="form-group"><label>رقم العضوية (ID):</label><input type="text" id="inputIdNum" value="A001"></div>
+            <div class="form-group">
+                <label>الصورة الشخصية:</label>
+                <input type="file" id="inputPhotoFile" accept="image/*">
+                <small style="color:#666; margin-top:5px; display:block;">اختر صورة شخصية واضحة (يُفضل مربعة).</small>
+            </div>
+
+            <button id="downloadBtn" class="btn-download">📥 تحميل البطاقة (1614×2164 بكسل)</button>
+            <p style="font-size:0.8rem; color:#888; margin-top:10px; text-align:center;">المقاس: 8.2 × 10.99 سم | الدقة: 500 DPI</p>
+        </div>
+
+        <div class="preview-panel">
+            <div id="idCard" class="id-card">
+                <div class="left-sidebar">
+                    <div class="gold-stripe"></div>
+                    <div class="logo-area">
+                        <img src="images/logo.png" alt="شعار" class="logo-img" onerror="this.src='https://via.placeholder.com/300x300/4A7C59/E6B325?text=Logo'">
+                        <div class="org-name-ar">جمعية حنطة<br>الخيرية التنموية</div>
+                    </div>
+                    <div class="qr-area"><img id="qrCodeImg" src="" alt="QR"></div>
+                </div>
+
+                <div class="right-content">
+                    <div class="watermark"></div>
+                    <div class="photo-container">
+                        <div class="photo-frame">
+                            <img id="cardPhoto" src="https://via.placeholder.com/500x500/cccccc/ffffff?text=Photo" alt="Photo">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <div class="name-en" id="cardNameEn">Tarek Hasan Ibrahem</div>
+                        <div class="name-ar" id="cardNameAr">طارق حسن ابراهيم</div>
+                        <div class="role-box">
+                            <div class="role-en" id="cardRoleEn">Founding Member</div>
+                            <div class="role-ar" id="cardRoleAr">عضو مؤسس</div>
+                        </div>
+                        <div class="details-box">
+                            <p><span class="label">JOIN DATE :</span> <span id="cardJoinDate">22 / 2 / 2026</span></p>
+                            <p><span class="label">MOB :</span> <span id="cardMobile">0987 002520</span></p>
+                            <p><span class="label">ID NO :</span> <span id="cardIdNum">A001</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="id-card.js"></script>
+</body>
+</html>
