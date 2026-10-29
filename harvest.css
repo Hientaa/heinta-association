@@ -177,7 +177,7 @@
 
 .subject-row {
     display: grid;
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: 1fr auto; /* تم تعديلها لتكون عمودين بدلاً من ثلاثة */
     gap: 10px;
     background: var(--bg-warm);
     padding: 12px;
