@@ -348,7 +348,7 @@
         font-size: 1.6rem;
     }
     .subject-row {
-        grid-template-columns: 1fr 1fr auto;
+        grid-template-columns: 1fr auto; /* تم تعديلها */
         gap: 8px;
     }
     .subject-row select {
