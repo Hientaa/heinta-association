@@ -16,8 +16,6 @@ const AVAILABLE_SUBJECTS = [
     "تاريخ", "جغرافيا", "عربي", "إنكليزي", "فرنسي"
 ];
 
-const LEVELS = ["متوسط", "ضعيف", "ضعيف جداً"];
-
 document.addEventListener('DOMContentLoaded', () => {
     initValidation();
     addSubjectRow();
@@ -62,16 +60,12 @@ function addSubjectRow() {
     row.className = 'subject-row';
     
     const subjectOptions = AVAILABLE_SUBJECTS.map(s => `<option value="${s}">${s}</option>`).join('');
-    const levelOptions = LEVELS.map(l => `<option value="${l}">${l}</option>`).join('');
     
+    // تم إزالة قائمة المستوى من هنا
     row.innerHTML = `
         <select class="subject-name">
             <option value="">-- اختر المادة --</option>
             ${subjectOptions}
-        </select>
-        <select class="subject-level">
-            <option value="">-- المستوى --</option>
-            ${levelOptions}
         </select>
         <button type="button" class="btn-remove-subject" onclick="removeSubjectRow(this)">✕</button>
     `;
@@ -96,29 +90,23 @@ document.getElementById('harvestForm')?.addEventListener('submit', async functio
     
     for (const row of subjectRows) {
         const subject = row.querySelector('.subject-name').value;
-        const level = row.querySelector('.subject-level').value;
         
         if (!subject) continue;
-        if (!level) {
-            showNotification('يرجى تحديد المستوى لكل مادة اخترتها.', 'error');
-            return;
-        }
-        subjects.push({ subject, level });
+        subjects.push(subject); // أصبحت مجرد مصفوفة نصوص
     }
     
     if (subjects.length === 0) {
-        showNotification('يرجى إضافة مادة واحدة على الأقل مع تحديد مستواك فيها.', 'error');
+        showNotification('يرجى إضافة مادة واحدة على الأقل.', 'error');
         return;
     }
     
+    // تم إزالة financialStatus و siblings
     const formData = {
         studentName: document.getElementById('studentName').value,
         studentGender: document.getElementById('studentGender').value,
         studentGrade: document.getElementById('studentGrade').value,
         studentBranch: document.getElementById('studentBranch').value || 'غير محدد',
         studentSchool: document.getElementById('studentSchool').value,
-        financialStatus: document.getElementById('financialStatus').value,
-        siblings: document.getElementById('siblings').value,
         parentName: document.getElementById('parentName').value,
         relation: document.getElementById('relation').value,
         parentPhone: document.getElementById('parentPhone').value,
@@ -142,7 +130,8 @@ document.getElementById('harvestForm')?.addEventListener('submit', async functio
         return;
     }
     
-    const subjectsText = subjects.map(s => `- **${s.subject}** : ${s.level}`).join('\n');
+    // تحديث طريقة عرض المواد في رسالة الـ Issue
+    const subjectsText = subjects.map(s => `- **${s}**`).join('\n');
     
     const issueTitle = `🌾 تسجيل حصاد المعرفة: ${formData.studentName} (${formData.studentGrade})`;
     const issueBody = `
@@ -158,8 +147,6 @@ document.getElementById('harvestForm')?.addEventListener('submit', async functio
 | **الصف** | ${formData.studentGrade} |
 | **الفرع** | ${formData.studentBranch} |
 | **المدرسة** | ${formData.studentSchool} |
-| **الحالة المادية** | ${formData.financialStatus} |
-| **عدد الأخوة وأعمارهم** | ${formData.siblings} |
 
 ### 👨‍👩‍👦 معلومات ولي الأمر
 | الحقل | القيمة |
@@ -170,7 +157,7 @@ document.getElementById('harvestForm')?.addEventListener('submit', async functio
 | **رقم الطالب** | ${formData.studentPhone} |
 | **العنوان** | ${formData.address} |
 
-### 📚 المواد المطلوبة ومستوياتها
+### 📚 المواد المطلوبة
 ${subjectsText}
 
 ### 📝 معلومات إضافية
